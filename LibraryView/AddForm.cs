@@ -86,7 +86,8 @@ namespace LibraryView
             {
                 ((Book)Publication).Authors = _authorsTextBox.Text;
             }
-            catch (NullReferenceException ex) {
+            catch (NullReferenceException ex)
+            {
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -115,7 +116,6 @@ namespace LibraryView
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void PublishingTextBoxValidating(object sender, CancelEventArgs e)
 		{
-            //SetStrProperty("Publishing", _publishingTextBox.Text, e);
             try
             {
                 ((Book)Publication).Publisher = _publishingTextBox.Text;
@@ -133,7 +133,6 @@ namespace LibraryView
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void YearTextBoxValidating(object sender, CancelEventArgs e)
 		{
-            //SetIntProperty("Year", _yearTextBox.Text, e);
             try
             {
                 Publication.Year = int.Parse(_yearTextBox.Text);
@@ -154,7 +153,6 @@ namespace LibraryView
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void NumberTextBoxValidating(object sender, CancelEventArgs e)
 		{
-            //SetIntProperty("Number", _numberTextBox.Text, e);
             try
             {
                 ((Magazine)Publication).Number = int.Parse(_numberTextBox.Text);
@@ -176,7 +174,6 @@ namespace LibraryView
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void PagesTextBoxValidating(object sender, CancelEventArgs e)
 		{
-            //SetIntProperty("Pages", _pagesTextBox.Text, e);
             try
             {
                 Publication.Pages = int.Parse(_pagesTextBox.Text);
