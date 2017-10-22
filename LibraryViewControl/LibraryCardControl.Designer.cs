@@ -75,7 +75,6 @@
             this._magazineRadioButton.Name = "_magazineRadioButton";
             this._magazineRadioButton.Size = new System.Drawing.Size(65, 17);
             this._magazineRadioButton.TabIndex = 1;
-            this._magazineRadioButton.TabStop = true;
             this._magazineRadioButton.Text = "Журнал";
             this._magazineRadioButton.UseVisualStyleBackColor = true;
             this._magazineRadioButton.CheckedChanged += new System.EventHandler(this.MagazineRadioButtonCheckedChanged);
@@ -83,6 +82,7 @@
             // _bookRadioButton
             // 
             this._bookRadioButton.AutoSize = true;
+            this._bookRadioButton.Checked = true;
             this._bookRadioButton.Location = new System.Drawing.Point(128, 12);
             this._bookRadioButton.Name = "_bookRadioButton";
             this._bookRadioButton.Size = new System.Drawing.Size(55, 17);

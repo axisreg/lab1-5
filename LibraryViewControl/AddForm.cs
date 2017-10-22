@@ -12,11 +12,6 @@ namespace LibraryViewControl
 	public partial class AddForm : Form
 	{
 		/// <summary>
-		/// Флаг ошибки
-		/// </summary>
-		private bool _error;
-
-		/// <summary>
 		/// Ссылка на добавленную карточку
 		/// </summary>
 		public LibraryCard Card { get; private set; }
@@ -29,6 +24,7 @@ namespace LibraryViewControl
 			InitializeComponent();
             _libraryCardControl.Card = Card;
             _libraryCardControl.ReadOnly = false;
+            _libraryCardControl.CanToggle = true;
 #if DEBUG
             _randomButton.Show();
 #endif
@@ -44,7 +40,7 @@ namespace LibraryViewControl
 		private void OkButtonClick(object sender, EventArgs e)
 		{
             Card = _libraryCardControl.Card;
-            if (!_error) DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
 		}
 
 		/// <summary>

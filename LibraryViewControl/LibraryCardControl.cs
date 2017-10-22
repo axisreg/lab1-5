@@ -54,13 +54,16 @@ namespace LibraryViewControl
                         _bookRadioButton.Checked = true;
 
                         if (_readOnly || !_canToggle) _magazineRadioButton.Enabled = false;
-                        _authorsTextBox.Text = ((Book)value).Authors.ToString();
-                        _publishingTextBox.Text = ((Book)value).Publisher.ToString();
+                        if (((Book)value).Authors != null)
+                            _authorsTextBox.Text = ((Book)value).Authors.ToString();
+                        if (((Book)value).Publisher != null)
+                            _publishingTextBox.Text = ((Book)value).Publisher.ToString();
                     }
                     else if (value is Magazine)
                     {
                         _magazineRadioButton.Enabled = true;
                         _magazineRadioButton.Checked = true;
+
                         if (_readOnly || !_canToggle) _bookRadioButton.Enabled = false;
                         _numberTextBox.Text = ((Magazine)value).Number.ToString();
                     }
@@ -71,6 +74,9 @@ namespace LibraryViewControl
         public LibraryCardControl()
         {
             InitializeComponent();
+            _bookRadioButton.Checked = true;
+            Card = new Book();
+            BookRadioButtonCheckedChanged(null, EventArgs.Empty);
             ReadOnly = true;
             CanToggle = true;
         }
@@ -135,6 +141,8 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void BookRadioButtonCheckedChanged(object sender, EventArgs e)
         {
+            //if (Card == null)
+            //   Card = new Book();
             _numberPanel.Hide();
             _authorsPanel.Show();
             _publishingPanel.Show();
@@ -147,6 +155,8 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void MagazineRadioButtonCheckedChanged(object sender, EventArgs e)
         {
+            //if (Card == null)
+            //    Card = new Magazine();
             _numberPanel.Show();
             _authorsPanel.Hide();
             _publishingPanel.Hide();

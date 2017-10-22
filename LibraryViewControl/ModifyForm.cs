@@ -10,8 +10,6 @@ namespace LibraryViewControl
 	/// </summary>
 	public partial class ModifyForm : Form
 	{
-		private bool _error;
-
 		/// <summary>
 		/// Ссылка на редактируемую карточку
 		/// </summary>
@@ -31,8 +29,6 @@ namespace LibraryViewControl
 
 
         public void ModifyFormShown(object sender, EventArgs e) {
-            
-
         }
 
         /// <summary>
@@ -42,7 +38,7 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void OkButtonClick(object sender, EventArgs e)
 		{
-			if (!_error) DialogResult = DialogResult.OK;
+			DialogResult = DialogResult.OK;
 		}
 	}
 }
