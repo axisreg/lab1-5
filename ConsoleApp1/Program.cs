@@ -10,9 +10,6 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-
-            int x = int.Parse("test10");
-            System.Console.WriteLine("X={0}", x);
             List<Publication> pubs = new List<Publication>()
             {
                 new Magazine("Прогнило чёто в", 1800, 20, 4),
