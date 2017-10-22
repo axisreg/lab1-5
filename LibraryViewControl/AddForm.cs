@@ -19,7 +19,7 @@ namespace LibraryViewControl
 		/// <summary>
 		/// Ссылка на добавленную карточку
 		/// </summary>
-		public Publication Publication { get; private set; }
+		public LibraryCard Card { get; private set; }
 
 		/// <summary>
 		/// Конструктор формы
@@ -27,7 +27,7 @@ namespace LibraryViewControl
 		public AddForm()
 		{
 			InitializeComponent();
-            _libraryCardControl.Publication = Publication;
+            _libraryCardControl.Card = Card;
             _libraryCardControl.ReadOnly = false;
 #if DEBUG
             _randomButton.Show();
@@ -43,7 +43,7 @@ namespace LibraryViewControl
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void OkButtonClick(object sender, EventArgs e)
 		{
-            Publication = _libraryCardControl.Publication;
+            Card = _libraryCardControl.Card;
             if (!_error) DialogResult = DialogResult.OK;
 		}
 
@@ -74,7 +74,7 @@ namespace LibraryViewControl
                 int randomYear = random.Next(1990, DateTime.Now.Year + 1);
                 int randomPages = random.Next(100, 501);
 
-                _libraryCardControl.Publication = new Book(randomTitle, randomYear, randomPages, randomAuthors, randomPublisher );
+                _libraryCardControl.Card = new Book(randomTitle, randomYear, randomPages, randomAuthors, randomPublisher );
 			}
 			else
 			{
@@ -83,7 +83,7 @@ namespace LibraryViewControl
                 int randomPages = random.Next(100, 501);
 				int randomNumber = random.Next(1, 13);
 
-                _libraryCardControl.Publication = new Magazine(randomTitle, randomYear, randomPages, randomNumber);
+                _libraryCardControl.Card = new Magazine(randomTitle, randomYear, randomPages, randomNumber);
 
             }
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LibraryModel
 {
     [Serializable]
-    public class Book : Publication
+    public class Book : LibraryCard
     {
         private string _authors;
         private string _publisher;
@@ -37,7 +37,7 @@ namespace LibraryModel
             {
                 if (value == null)
                 {
-                    throw new NullReferenceException("Строка с авторами книги не инициализирована!");
+                    throw new NullReferenceException("Список авторов не может быть пустым!");
                 }
                 _authors = value;
             }

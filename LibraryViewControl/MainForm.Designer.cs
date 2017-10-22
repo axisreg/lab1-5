@@ -187,7 +187,7 @@
             this._libraryCardControl.CanToggle = false;
             this._libraryCardControl.Location = new System.Drawing.Point(3, 3);
             this._libraryCardControl.Name = "_libraryCardControl";
-            this._libraryCardControl.Publication = null;
+            this._libraryCardControl.Card = null;
             this._libraryCardControl.ReadOnly = false;
             this._libraryCardControl.Size = new System.Drawing.Size(444, 248);
             this._libraryCardControl.TabIndex = 7;

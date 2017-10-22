@@ -15,31 +15,31 @@ namespace LibraryView
 		/// <summary>
 		/// Ссылка на редактируемую карточку
 		/// </summary>
-		public Publication Publication { get; private set; }
+		public LibraryCard Card { get; private set; }
 
 		/// <summary>
 		/// Конструктор формы
 		/// </summary>
-		/// <param name="publication">Карточка издания для редактирования</param>
-		public ModifyForm(Publication publication)
+		/// <param name="card">Карточка издания для редактирования</param>
+		public ModifyForm(LibraryCard card)
 		{
 			InitializeComponent();
-			Publication = publication;
-			_titleTextBox.Text = publication.Title;
-			_yearTextBox.Text = publication.Year.ToString();
-			_pagesTextBox.Text = publication.Pages.ToString();
-			if (publication is Book)
+			Card = card;
+			_titleTextBox.Text = card.Title;
+			_yearTextBox.Text = card.Year.ToString();
+			_pagesTextBox.Text = card.Pages.ToString();
+			if (card is Book)
 			{
 				_bookRadioButton.Checked = true;
 				_magazineRadioButton.Enabled = false;
-				_authorsTextBox.Text = ((Book)publication).Authors;
-				_publishingTextBox.Text = ((Book)publication).Publisher;
+				_authorsTextBox.Text = ((Book)card).Authors;
+				_publishingTextBox.Text = ((Book)card).Publisher;
 			}
 			else
 			{
 				_magazineRadioButton.Checked = true;
 				_bookRadioButton.Enabled = false;
-				_numberTextBox.Text = ((Magazine)publication).Number.ToString();
+				_numberTextBox.Text = ((Magazine)card).Number.ToString();
 			}
 		}
 
@@ -91,7 +91,7 @@ namespace LibraryView
 		{
             try
             {
-                ((Book)Publication).Authors = _authorsTextBox.Text;
+                ((Book)Card).Authors = _authorsTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -108,7 +108,7 @@ namespace LibraryView
 		{
             try
             {
-                Publication.Title = _titleTextBox.Text;
+                Card.Title = _titleTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -125,7 +125,7 @@ namespace LibraryView
 		{
             try
             {
-                ((Book)Publication).Publisher = _publishingTextBox.Text;
+                ((Book)Card).Publisher = _publishingTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -142,7 +142,7 @@ namespace LibraryView
 		{
             try
             {
-                Publication.Year = int.Parse(_yearTextBox.Text);
+                Card.Year = int.Parse(_yearTextBox.Text);
             }
             catch (FormatException ex)
             {
@@ -163,7 +163,7 @@ namespace LibraryView
 		{
             try
             {
-                ((Magazine)Publication).Number = int.Parse(_numberTextBox.Text);
+                ((Magazine)Card).Number = int.Parse(_numberTextBox.Text);
             }
             catch (FormatException ex)
             {
@@ -184,7 +184,7 @@ namespace LibraryView
 		{
             try
             {
-                Publication.Pages = int.Parse(_pagesTextBox.Text);
+                Card.Pages = int.Parse(_pagesTextBox.Text);
             }
             catch (FormatException ex) {
                 ShowErrorAndCancelEvent("Количество страниц должно быть целым числом", e);

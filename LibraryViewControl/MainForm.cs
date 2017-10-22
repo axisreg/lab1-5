@@ -16,14 +16,14 @@ namespace LibraryViewControl
 		/// <summary>
 		/// Список публикаций
 		/// </summary>
-		private List<Publication> _publicationList;
+		private List<LibraryCard> _libraryCards;
 		
 		/// <summary>
 		/// Конструктор формы
 		/// </summary>
 		public MainForm()
 		{
-			_publicationList = new List<Publication>();
+			_libraryCards = new List<LibraryCard>();
 			InitializeComponent();
             _libraryCardControl.ReadOnly = true;
             _openFileDialog.InitialDirectory = Path.GetDirectoryName(Application.ExecutablePath);
@@ -37,9 +37,9 @@ namespace LibraryViewControl
 		{
 			_dataListView.BeginUpdate();
 			_dataListView.Items.Clear();
-			foreach (Publication publication in _publicationList)
+			foreach (LibraryCard card in _libraryCards)
 			{
-				_dataListView.Items.Add(new ListViewItem(new string[] { publication.Title, publication.Year.ToString(), publication.Pages.ToString(), publication.ToString() }));
+				_dataListView.Items.Add(new ListViewItem(new string[] { card.Title, card.Year.ToString(), card.Pages.ToString(), card.ToString() }));
 			}
 			_dataListView.EndUpdate();
 		}
@@ -54,9 +54,9 @@ namespace LibraryViewControl
 			AddForm form = new AddForm();
 			if (form.ShowDialog() == DialogResult.OK)
 			{
-				_publicationList.Add(form.Publication);
+				_libraryCards.Add(form.Card);
 				UpdateList();
-				_dataListView.EnsureVisible(_publicationList.Count - 1);
+				_dataListView.EnsureVisible(_libraryCards.Count - 1);
 			}
 		}
 
@@ -70,7 +70,7 @@ namespace LibraryViewControl
 			int index = _dataListView.SelectedIndices.Count <= 0 ? -1 : _dataListView.SelectedIndices[0];
 			if (index >= 0 && MessageBox.Show(this, "Вы действительно хотите удалить эту запись?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
-				_publicationList.RemoveAt(index);
+				_libraryCards.RemoveAt(index);
 				UpdateList();
 			}
 		}
@@ -85,11 +85,11 @@ namespace LibraryViewControl
 			int index = _dataListView.SelectedIndices.Count <= 0 ? -1 : _dataListView.SelectedIndices[0];
 			if (index >= 0)
 			{
-				ModifyForm form = new ModifyForm(_publicationList[index]);
+				ModifyForm form = new ModifyForm(_libraryCards[index]);
 				if (form.ShowDialog() == DialogResult.OK)
 				{
 					UpdateList();
-					_dataListView.EnsureVisible(_publicationList.Count - 1);
+					_dataListView.EnsureVisible(_libraryCards.Count - 1);
 				}
 			}
 		}
@@ -101,7 +101,7 @@ namespace LibraryViewControl
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void FindButtonClick(object sender, EventArgs e)
 		{
-			FindForm form = new FindForm(_publicationList);
+			FindForm form = new FindForm(_libraryCards);
 			form.ShowDialog();
 		}
 
@@ -119,14 +119,14 @@ namespace LibraryViewControl
 					using (FileStream fs = new FileStream(_openFileDialog.FileName, FileMode.Open))
 					{
 						BinaryFormatter bf = new BinaryFormatter();
-						_publicationList = (List<Publication>) bf.Deserialize(fs);
+						_libraryCards = (List<LibraryCard>) bf.Deserialize(fs);
 						UpdateList();
 					}
 				}
 				catch
 				{
 					MessageBox.Show(this, "Ошибка чтения данных из файла!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					_publicationList = new List<Publication>();
+					_libraryCards = new List<LibraryCard>();
 					UpdateList();
 				}
 			}
@@ -144,7 +144,7 @@ namespace LibraryViewControl
 				using (FileStream fs = new FileStream(_saveFileDialog.FileName, FileMode.Create))
 				{
 					BinaryFormatter bf = new BinaryFormatter();
-					bf.Serialize(fs, _publicationList);
+					bf.Serialize(fs, _libraryCards);
 				}
 			}
 		}
@@ -159,7 +159,7 @@ namespace LibraryViewControl
             var index = _dataListView.SelectedIndices.Count <= 0 ? -1 : _dataListView.SelectedIndices[0];
             if (index >= 0)
             {
-                _libraryCardControl.Publication = _publicationList[index];
+                _libraryCardControl.Card = _libraryCards[index];
             }
         }
     }

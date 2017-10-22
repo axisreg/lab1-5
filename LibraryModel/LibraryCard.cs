@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LibraryModel
 {
-    [Serializable] abstract public class Publication
+    [Serializable] abstract public class LibraryCard
     {
         protected string _title;
         protected int _year;

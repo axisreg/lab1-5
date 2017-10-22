@@ -15,16 +15,16 @@ namespace LibraryViewControl
 		/// <summary>
 		/// Ссылка на редактируемую карточку
 		/// </summary>
-		public Publication Publication { get; private set; }
+		public LibraryCard Card { get; private set; }
 
 		/// <summary>
 		/// Конструктор формы
 		/// </summary>
-		/// <param name="publication">Карточка издания для редактирования</param>
-		public ModifyForm(Publication publication)
+		/// <param name="card">Карточка издания для редактирования</param>
+		public ModifyForm(LibraryCard card)
 		{
 			InitializeComponent();
-            _libraryCardControl.Publication = publication;
+            _libraryCardControl.Card = card;
             _libraryCardControl.ReadOnly = false;
             _libraryCardControl.CanToggle = false;
         }

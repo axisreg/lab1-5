@@ -21,7 +21,7 @@ namespace LibraryViewControl
         /// <summary>
         /// Ссылка на редактируемое издание
         /// </summary>
-        private Publication _publication;
+        private LibraryCard _card;
 
         /// <summary>
         /// Флаг доступа только на чтение
@@ -33,17 +33,17 @@ namespace LibraryViewControl
         /// </summary>
         private bool _canToggle;
 
-        public Publication Publication
+        public LibraryCard Card
         {
             get
             {
-                return _publication;
+                return _card;
             }
             set
             {
                 if (value != null)
                 {
-                    _publication = value;
+                    _card = value;
                     _titleTextBox.Text = value.Title;
                     _yearTextBox.Text = value.Year.ToString();
                     _pagesTextBox.Text = value.Pages.ToString();
@@ -167,8 +167,8 @@ namespace LibraryViewControl
         {
             try
             {
-                if (Publication is Book)
-                    ((Book)Publication).Authors = _authorsTextBox.Text;
+                if (Card is Book)
+                    ((Book)Card).Authors = _authorsTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -185,7 +185,7 @@ namespace LibraryViewControl
         {
             try
             {
-                Publication.Title = _titleTextBox.Text;
+                Card.Title = _titleTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -202,8 +202,8 @@ namespace LibraryViewControl
         {
             try
             {
-                if (Publication is Book)
-                    ((Book)Publication).Publisher = _publishingTextBox.Text;
+                if (Card is Book)
+                    ((Book)Card).Publisher = _publishingTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -220,7 +220,7 @@ namespace LibraryViewControl
         {
             try
             {
-                Publication.Year = int.Parse(_yearTextBox.Text);
+                Card.Year = int.Parse(_yearTextBox.Text);
             }
             catch (FormatException ex)
             {
@@ -241,8 +241,8 @@ namespace LibraryViewControl
         {
             try
             {
-                if (Publication is Magazine)
-                    ((Magazine)Publication).Number = int.Parse(_numberTextBox.Text);
+                if (Card is Magazine)
+                    ((Magazine)Card).Number = int.Parse(_numberTextBox.Text);
             }
             catch (FormatException ex)
             {
@@ -263,7 +263,7 @@ namespace LibraryViewControl
         {
             try
             {
-                Publication.Pages = int.Parse(_pagesTextBox.Text);
+                Card.Pages = int.Parse(_pagesTextBox.Text);
             }
             catch (FormatException ex)
             {

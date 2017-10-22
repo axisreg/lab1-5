@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace LibraryModel
 {
     [Serializable]
-    public class Magazine : Publication
+    public class Magazine : LibraryCard
     {
         private int _number;
 

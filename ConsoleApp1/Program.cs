@@ -10,13 +10,13 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            List<Publication> pubs = new List<Publication>()
+            List<LibraryCard> cards = new List<LibraryCard>()
             {
                 new Magazine("Прогнило чёто в", 1800, 20, 4),
                 new Book("В датском королевстве", 1992, 400, "Е. Розцекранц, И. Гильденстерн", "Дача inc")
             };
 
-            foreach (Publication pub in pubs) {
+            foreach (LibraryCard pub in cards) {
                 System.Console.WriteLine(pub);
             }
             System.Console.ReadLine();

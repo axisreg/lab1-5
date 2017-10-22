@@ -41,10 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Book.cs" />
-    <Compile Include="Collection.cs" />
-    <Compile Include="Dissertation.cs" />
     <Compile Include="Magazine.cs" />
-    <Compile Include="Publication.cs" />
+    <Compile Include="LibraryCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

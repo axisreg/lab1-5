@@ -19,7 +19,7 @@ namespace LibraryView
 		/// <summary>
 		/// Ссылка на добавленную карточку
 		/// </summary>
-		public Publication Publication { get; private set; }
+		public LibraryCard Card { get; private set; }
 
 		/// <summary>
 		/// Конструктор формы
@@ -49,7 +49,7 @@ namespace LibraryView
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void BookRadioButtonCheckedChanged(object sender, EventArgs e)
 		{
-			Publication = new Book();
+			Card = new Book();
 			_numberPanel.Hide();
 			_authorsPanel.Show();
 			_publishingPanel.Show();
@@ -62,7 +62,7 @@ namespace LibraryView
 		/// <param name="e">Ссылка на аргументы события</param>
 		private void MagazineRadioButtonCheckedChanged(object sender, EventArgs e)
 		{
-			Publication = new Magazine();
+			Card = new Magazine();
 			_numberPanel.Show();
 			_authorsPanel.Hide();
 			_publishingPanel.Hide();
@@ -84,7 +84,7 @@ namespace LibraryView
 		{
             try
             {
-                ((Book)Publication).Authors = _authorsTextBox.Text;
+                ((Book)Card).Authors = _authorsTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -101,7 +101,7 @@ namespace LibraryView
 		{
             try
             {
-                Publication.Title = _titleTextBox.Text;
+                Card.Title = _titleTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -118,7 +118,7 @@ namespace LibraryView
 		{
             try
             {
-                ((Book)Publication).Publisher = _publishingTextBox.Text;
+                ((Book)Card).Publisher = _publishingTextBox.Text;
             }
             catch (NullReferenceException ex)
             {
@@ -135,7 +135,7 @@ namespace LibraryView
 		{
             try
             {
-                Publication.Year = int.Parse(_yearTextBox.Text);
+                Card.Year = int.Parse(_yearTextBox.Text);
             }
             catch (FormatException ex) {
                 ShowErrorAndCancelEvent("Год издания должен быть целым числом", e);
@@ -155,7 +155,7 @@ namespace LibraryView
 		{
             try
             {
-                ((Magazine)Publication).Number = int.Parse(_numberTextBox.Text);
+                ((Magazine)Card).Number = int.Parse(_numberTextBox.Text);
             }
             catch (FormatException ex)
             {
@@ -176,7 +176,7 @@ namespace LibraryView
 		{
             try
             {
-                Publication.Pages = int.Parse(_pagesTextBox.Text);
+                Card.Pages = int.Parse(_pagesTextBox.Text);
             }
             catch (FormatException ex)
             {
