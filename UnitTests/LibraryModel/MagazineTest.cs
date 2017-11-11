@@ -15,10 +15,7 @@ namespace UnitTests.LibraryModel
         /// </summary>
         /// <param name="title">Название журнала</param>
         [Test]
-        [TestCase("Открытое образование", TestName = "Тестирование Title при присваивании \"Открытое образование\".")]
-        [TestCase("", ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Title при присваивании \"\".")]
-        [TestCase("   ", ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Title при присваивании \"   \".")]
-        [TestCase(null, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Title при присваивании null.")]
+        [TestCase("Открытое образование", TestName = "Тестирование Title при присваивании валидного значения.")]
         public void TitleTest(string title)
         {
             var pub = new Magazine();
@@ -26,21 +23,40 @@ namespace UnitTests.LibraryModel
         }
 
         /// <summary>
+        /// Метод для тестирования ошибок в названии журнала
+        /// </summary>
+        [Test]
+        public void TitleTestErrors() {
+            var pub = new Magazine();
+            Assert.Throws<NullReferenceException>(() => pub.Title = "");
+            Assert.Throws<NullReferenceException>(() => pub.Title = "   ");
+            Assert.Throws<NullReferenceException>(() => pub.Title = null);
+        }
+
+        /// <summary>
         /// Метод для тестирования года издания номера журнала
         /// </summary>
         /// <param name="year">Год издания номера журнала</param>
         [Test]
-        [TestCase(2018, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании 2017.")]
-        [TestCase(2016, TestName = "Тестирование Year при присваивании 2016.")]
-        [TestCase(1956, TestName = "Тестирование Year при присваивании 1956.")]
         [TestCase(1800, TestName = "Тестирование Year при присваивании 1800.")]
-        [TestCase(1799, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании 1799.")]
-        [TestCase(Int32.MaxValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании Int32.MaxValue.")]
-        [TestCase(Int32.MinValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании Int32.MinValue.")]
+        [TestCase(1959, TestName = "Тестирование Year при присваивании 1959.")]
+        [TestCase(2017, TestName = "Тестирование Year при присваивании текущего года")]
         public void YearTest(int year)
         {
             var pub = new Magazine();
             pub.Year = year;
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок при присвоении года издания номера журнала
+        /// </summary>
+        [Test]
+        public void YearTestErrors() {
+            var pub = new Magazine();
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = DateTime.Now.Year + 1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = 1799);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = Int32.MaxValue);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = Int32.MinValue);
         }
 
         /// <summary>
@@ -51,9 +67,6 @@ namespace UnitTests.LibraryModel
         [TestCase(100, TestName = "Тестирование Pages при присваивании 100.")]
         [TestCase(1000, TestName = "Тестирование Pages при присваивании 1000.")]
         [TestCase(Int32.MaxValue, TestName = "Тестирование Pages при присваивании Int32.MaxValue.")]
-        [TestCase(Int32.MinValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Pages при присваивании Int32.MinValue.")]
-        [TestCase(0, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Pages при присваивании 0.")]
-        [TestCase(-1, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Pages при присваивании -1.")]
         public void PagesTest(int pages)
         {
             var pub = new Magazine();
@@ -61,21 +74,42 @@ namespace UnitTests.LibraryModel
         }
 
         /// <summary>
+        /// Метод для тестирования ошибок при присвоении количества страниц номера журнала
+        /// </summary>
+        [Test]
+        public void PageTestErrors() {
+            var pub = new Magazine();
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = 0);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = Int32.MinValue);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = -1);
+        }
+
+        /// <summary>
         /// Метод для тестирования номера выпуска журнала
         /// </summary>
         /// <param name="number">Номер выпуска журнала</param>
         [Test]
-        [TestCase(13, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Number при присваивании 13.")]
         [TestCase(12, TestName = "Тестирование Number при присваивании 12.")]
         [TestCase(6, TestName = "Тестирование Number при присваивании 6.")]
         [TestCase(1, TestName = "Тестирование Number при присваивании 1.")]
-        [TestCase(0, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Number при присваивании 0.")]
-        [TestCase(Int32.MaxValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Number при присваивании Int32.MaxValue.")]
-        [TestCase(Int32.MinValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Number при присваивании Int32.MinValue.")]
         public void NumberTest(int number)
         {
             var pub = new Magazine();
             pub.Number = number;
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок номера выпуска журнала
+        /// </summary>
+        [Test]
+        public void NumberTestErrors()
+        {
+            var pub = new Magazine();
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Number = 0);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Number = Int32.MinValue);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Number = Int32.MaxValue);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Number = 13);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Number = -1);
         }
 
         /// <summary>
@@ -87,18 +121,36 @@ namespace UnitTests.LibraryModel
         /// <param name="pages">Количество страниц номера журнала</param>
         [Test]
         [TestCase("Открытое образование", 2016, 6, 100, TestName = "Тестирование ToString, когда все поля карточки заполнены.", ExpectedResult = "Открытое образование. - 2016. - № 6. - 100 с.")]
-        [TestCase(null, 2016, 6, 100, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование ToString, когда не заполнено поле Title.")]
-        [TestCase("Открытое образование", 0, 6, 100, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование ToString, когда не заполнено поле Year.")]
-        [TestCase("Открытое образование", 2016, 0, 100, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование ToString, когда не заполнено поле Number.")]
-        [TestCase("Открытое образование", 2016, 6, 0, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование ToString, когда не заполнено поле Pages.")]
-        public string ToStringTest(string title, int year, int number, int pages)
+        public string FormatTest(string title, int year, int number, int pages)
         {
             var pub = new Magazine();
             pub.Title = title;
             pub.Year = year;
             pub.Number = number;
             pub.Pages = pages;
-            return pub.ToString();
+            return pub.format();
+        }
+
+
+        private string setFormatData(string title, int year, int number, int pages) {
+            var pub = new Magazine();
+            pub.Title = title;
+            pub.Year = year;
+            pub.Number = number;
+            pub.Pages = pages;
+            return pub.format();
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок формирования информации о номере журнала в соответствии с ОС ТУСУР 01-2013
+        /// </summary>
+        [Test]
+        public void FormatTestErrors()
+        {
+            Assert.Throws<NullReferenceException>(() => setFormatData(null, 2016, 6, 100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 0, 6, 100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 2016, 0, 100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 2016, 6, 0));
         }
     }
 }
