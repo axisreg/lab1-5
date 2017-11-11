@@ -153,18 +153,18 @@ namespace UnitTests.LibraryModel
             pub.Title = title;
             pub.Year = year;
             pub.Pages = pages;
-            return pub.format();
+            return pub.Format();
         }
 
 
-        private string setFormatData(string authors, string title, string publishing, int year, int pages) {
+        private string SetFormatData(string authors, string title, string publishing, int year, int pages) {
             var pub = new Book();
             pub.Authors = authors;
             pub.Publisher = publishing;
             pub.Title = title;
             pub.Year = year;
             pub.Pages = pages;
-            return pub.format();
+            return pub.Format();
         }
 
         /// <summary>
@@ -173,11 +173,11 @@ namespace UnitTests.LibraryModel
         [Test]
         public void FormatErrorsTest()
         {
-            Assert.Throws<NullReferenceException>(() => setFormatData(null, "Мастер и Маргарита", "Художественная литература", 2016, 500));
-            Assert.Throws<NullReferenceException>(() => setFormatData("Михаил Булгаков", null, "Художественная литература", 2016, 500));
-            Assert.Throws<NullReferenceException>(() => setFormatData("Михаил Булгаков", "Мастер и Маргарита", null, 2016, 500));
-            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 0, 500));
-            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 2016, 0));
+            Assert.Throws<NullReferenceException>(() => SetFormatData(null, "Мастер и Маргарита", "Художественная литература", 2016, 500));
+            Assert.Throws<NullReferenceException>(() => SetFormatData("Михаил Булгаков", null, "Художественная литература", 2016, 500));
+            Assert.Throws<NullReferenceException>(() => SetFormatData("Михаил Булгаков", "Мастер и Маргарита", null, 2016, 500));
+            Assert.Throws<ArgumentOutOfRangeException>(() => SetFormatData("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 0, 500));
+            Assert.Throws<ArgumentOutOfRangeException>(() => SetFormatData("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 2016, 0));
         }
     }
 }

@@ -128,17 +128,17 @@ namespace UnitTests.LibraryModel
             pub.Year = year;
             pub.Number = number;
             pub.Pages = pages;
-            return pub.format();
+            return pub.Format();
         }
 
 
-        private string setFormatData(string title, int year, int number, int pages) {
+        private string SetFormatData(string title, int year, int number, int pages) {
             var pub = new Magazine();
             pub.Title = title;
             pub.Year = year;
             pub.Number = number;
             pub.Pages = pages;
-            return pub.format();
+            return pub.Format();
         }
 
         /// <summary>
@@ -147,10 +147,10 @@ namespace UnitTests.LibraryModel
         [Test]
         public void FormatErrosTest()
         {
-            Assert.Throws<NullReferenceException>(() => setFormatData(null, 2016, 6, 100));
-            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 0, 6, 100));
-            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 2016, 0, 100));
-            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 2016, 6, 0));
+            Assert.Throws<NullReferenceException>(() => SetFormatData(null, 2016, 6, 100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => SetFormatData("Открытое образование", 0, 6, 100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => SetFormatData("Открытое образование", 2016, 0, 100));
+            Assert.Throws<ArgumentOutOfRangeException>(() => SetFormatData("Открытое образование", 2016, 6, 0));
         }
     }
 }

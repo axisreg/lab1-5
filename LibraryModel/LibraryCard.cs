@@ -72,7 +72,7 @@ namespace LibraryModel
             }
         }
 
-        abstract public string format();
+        abstract public string Format();
     }
 
 
