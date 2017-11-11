@@ -26,7 +26,7 @@ namespace UnitTests.LibraryModel
         /// Метод для тестирования ошибок в названии журнала
         /// </summary>
         [Test]
-        public void TitleTestErrors() {
+        public void TitleErrorsTest() {
             var pub = new Magazine();
             Assert.Throws<NullReferenceException>(() => pub.Title = "");
             Assert.Throws<NullReferenceException>(() => pub.Title = "   ");
@@ -51,7 +51,7 @@ namespace UnitTests.LibraryModel
         /// Метод для тестирования ошибок при присвоении года издания номера журнала
         /// </summary>
         [Test]
-        public void YearTestErrors() {
+        public void YearErrorsTest() {
             var pub = new Magazine();
             Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = DateTime.Now.Year + 1);
             Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = 1799);
@@ -77,7 +77,7 @@ namespace UnitTests.LibraryModel
         /// Метод для тестирования ошибок при присвоении количества страниц номера журнала
         /// </summary>
         [Test]
-        public void PageTestErrors() {
+        public void PageErrorsTest() {
             var pub = new Magazine();
             Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = 0);
             Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = Int32.MinValue);
@@ -102,7 +102,7 @@ namespace UnitTests.LibraryModel
         /// Метод для тестирования ошибок номера выпуска журнала
         /// </summary>
         [Test]
-        public void NumberTestErrors()
+        public void NumberErrorsTest()
         {
             var pub = new Magazine();
             Assert.Throws<ArgumentOutOfRangeException>(() => pub.Number = 0);
@@ -145,7 +145,7 @@ namespace UnitTests.LibraryModel
         /// Метод для тестирования ошибок формирования информации о номере журнала в соответствии с ОС ТУСУР 01-2013
         /// </summary>
         [Test]
-        public void FormatTestErrors()
+        public void FormatErrosTest()
         {
             Assert.Throws<NullReferenceException>(() => setFormatData(null, 2016, 6, 100));
             Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Открытое образование", 0, 6, 100));

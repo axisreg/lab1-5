@@ -16,15 +16,19 @@ namespace UnitTests.LibraryModel
         /// <param name="title">Название книги</param>
         [Test]
         [TestCase("Мастер и Маргарита", TestName = "Тестирование Title при присваивании \"Мастер и Маргарита\".")]
-        //[TestCase("", ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Title при присваивании \"\".")]
-        //[TestCase("   ", ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Title при присваивании \"   \".")]
-        //[TestCase(null, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Title при присваивании null.")]
         public void TitleTest(string title)
         {
             var pub = new Book();
             pub.Title = title;
-            pub.Title = "Мастер и маргарита";
-            Assert.That(pub.Title, Is.EqualTo("Мастер и маргарита"));
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок названия книги
+        /// </summary>
+        [Test]
+        public void TitleErrorsTest()
+        {
+            var pub = new Book();
             Assert.Throws<NullReferenceException>(() => pub.Title = "");
             Assert.Throws<NullReferenceException>(() => pub.Title = "   ");
             Assert.Throws<NullReferenceException>(() => pub.Title = null);
@@ -35,16 +39,25 @@ namespace UnitTests.LibraryModel
         /// </summary>
         /// <param name="year">Год издания книги</param>
         [Test]
-        //[TestCase(2018, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании 2017.")]
         [TestCase(2016, TestName = "Тестирование Year при присваивании 2016.")]
         [TestCase(1800, TestName = "Тестирование Year при присваивании 1800.")]
-        //[TestCase(1799, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании 1799.")]
-        //[TestCase(Int32.MaxValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании Int32.MaxValue.")]
-       // [TestCase(Int32.MinValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Year при присваивании Int32.MinValue.")]
         public void YearTest(int year)
         {
             var pub = new Book();
             pub.Year = year;
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок при присвоении года издания номера журнала
+        /// </summary>
+        [Test]
+        public void YearErrorsTest()
+        {
+            var pub = new Book();
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = DateTime.Now.Year + 1);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = 1799);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = Int32.MaxValue);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Year = Int32.MinValue);
         }
 
         /// <summary>
@@ -55,13 +68,22 @@ namespace UnitTests.LibraryModel
         [TestCase(100, TestName = "Тестирование Pages при присваивании 100.")]
         [TestCase(1000, TestName = "Тестирование Pages при присваивании 1000.")]
         [TestCase(Int32.MaxValue, TestName = "Тестирование Pages при присваивании Int32.MaxValue.")]
-        //[TestCase(Int32.MinValue, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Pages при присваивании Int32.MinValue.")]
-        //[TestCase(0, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Pages при присваивании 0.")]
-        //[TestCase(-1, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование Pages при присваивании -1.")]
         public void PagesTest(int pages)
         {
             var pub = new Book();
             pub.Pages = pages;
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок при присвоении количества страниц книги
+        /// </summary>
+        [Test]
+        public void PageErrorsErrors()
+        {
+            var pub = new Book();
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = 0);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = Int32.MinValue);
+            Assert.Throws<ArgumentOutOfRangeException>(() => pub.Pages = -1);
         }
 
         /// <summary>
@@ -71,11 +93,21 @@ namespace UnitTests.LibraryModel
         [Test]
         [TestCase("Михаил Булгаков", TestName = "Тестирование Authors при присваивании \"Михаил Булгаков\".")]
         [TestCase("", TestName = "Тестирование Authors при присваивании \"\".")]
-        //[TestCase(null, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Authors при присваивании null.")]
         public void AuthorsTest(string authors)
         {
             var pub = new Book();
             pub.Authors = authors;
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок при назначении списка авторов
+        /// </summary>
+        [Test]
+        public void AuthorsErrorsTest()
+        {
+            var pub = new Book();
+            Assert.Throws<NullReferenceException>(() => pub.Authors = null);
+
         }
 
         /// <summary>
@@ -84,13 +116,23 @@ namespace UnitTests.LibraryModel
         /// <param name="publishing">Наименование издательства</param>
         [Test]
         [TestCase("Художественная литература", TestName = "Тестирование Publishing при присваивании \"Художественная литература\".")]
-        //[TestCase("", ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Publishing при присваивании \"\".")]
-        //[TestCase("   ", ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Publishing при присваивании \"   \".")]
-       // [TestCase(null, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование Publishing при присваивании null.")]
-        public void PublisherTest(string publishing)
+        public void PublisherTest(string publisher)
         {
             var pub = new Book();
-            pub.Publisher = publishing;
+            pub.Publisher = publisher;
+        }
+ 
+
+        /// <summary>
+        /// Метод для тестирования ошибок назначения издательства, выпустившего книгу
+        /// </summary>
+        [Test]
+        public void PublisherErrorTest()
+        {
+            var pub = new Book();
+            Assert.Throws<NullReferenceException>(() => pub.Publisher = "");
+            Assert.Throws<NullReferenceException>(() => pub.Publisher= "   ");
+            Assert.Throws<NullReferenceException>(() => pub.Publisher = null);
         }
 
         /// <summary>
@@ -103,12 +145,7 @@ namespace UnitTests.LibraryModel
         /// <param name="pages">Количество страниц книги</param>
         [Test]
         [TestCase("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 2016, 500, TestName = "Тестирование ToString, когда все поля карточки заполнены.", ExpectedResult = "Михаил, Булгаков. Мастер и Маргарита / Булгаков Михаил. - Художественная литература, 2016. - 500 с.")]
-        //[TestCase(null, "Мастер и Маргарита", "Художественная литература", 2016, 500, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование ToString, когда не заполнено поле Authors.")]
-        //[TestCase("Михаил Булгаков", null, "Художественная литература", 2016, 500, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование ToString, когда не заполнено поле Title.")]
-        //[TestCase("Михаил Булгаков", "Мастер и Маргарита", null, 2016, 500, ExpectedException = typeof(NullReferenceException), TestName = "Тестирование ToString, когда не заполнено поле Publishing.")]
-        //[TestCase("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 0, 500, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование ToString, когда не заполнено поле Year.")]
-       // [TestCase("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 2016, 0, ExpectedException = typeof(ArgumentOutOfRangeException), TestName = "Тестирование ToString, когда не заполнено поле Pages.")]
-        public string ToStringTest(string authors, string title, string publishing, int year, int pages)
+        public string FormatTest(string authors, string title, string publishing, int year, int pages)
         {
             var pub = new Book();
             pub.Authors = authors;
@@ -116,7 +153,31 @@ namespace UnitTests.LibraryModel
             pub.Title = title;
             pub.Year = year;
             pub.Pages = pages;
-            return pub.ToString();
+            return pub.format();
+        }
+
+
+        private string setFormatData(string authors, string title, string publishing, int year, int pages) {
+            var pub = new Book();
+            pub.Authors = authors;
+            pub.Publisher = publishing;
+            pub.Title = title;
+            pub.Year = year;
+            pub.Pages = pages;
+            return pub.format();
+        }
+
+        /// <summary>
+        /// Метод для тестирования ошибок формирования информации о книге в соответствии с ОС ТУСУР 01-2013
+        /// </summary>
+        [Test]
+        public void FormatErrorsTest()
+        {
+            Assert.Throws<NullReferenceException>(() => setFormatData(null, "Мастер и Маргарита", "Художественная литература", 2016, 500));
+            Assert.Throws<NullReferenceException>(() => setFormatData("Михаил Булгаков", null, "Художественная литература", 2016, 500));
+            Assert.Throws<NullReferenceException>(() => setFormatData("Михаил Булгаков", "Мастер и Маргарита", null, 2016, 500));
+            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 0, 500));
+            Assert.Throws<ArgumentOutOfRangeException>(() => setFormatData("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 2016, 0));
         }
     }
 }
