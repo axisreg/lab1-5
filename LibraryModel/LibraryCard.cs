@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryModel
 {
+    /// <summary>
+    /// Класс, описывающий библиотечную карточку
+    /// </summary>
     [Serializable] abstract public class LibraryCard
     {
         protected string _title;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace LibraryModel
 {
+    /// <summary>
+    /// Класс, описывающий библиотечную карточку журнала
+    /// </summary>
     [Serializable]
     public class Magazine : LibraryCard
     {
@@ -41,6 +44,10 @@ namespace LibraryModel
             }
         }
 
+        /// <summary>
+        /// Формирование информации о выпуске журнала
+        /// </summary>
+        /// <returns>Информация о выпуске журнала в соответствии с ОС ТУСУР 01-2013</returns>
         override public string format()
         {
             return String.Format("{0}. - {1}. - № {2}. - {3} с.", _title, _year, _number, _pages);
