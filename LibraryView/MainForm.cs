@@ -125,7 +125,6 @@ namespace LibraryView
 				catch
 				{
 					MessageBox.Show(this, "Ошибка чтения данных из файла!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					_libraryCards = new List<LibraryCard>();
 					UpdateList();
 				}
 			}

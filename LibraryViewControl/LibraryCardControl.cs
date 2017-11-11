@@ -141,8 +141,6 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void BookRadioButtonCheckedChanged(object sender, EventArgs e)
         {
-            //if (Card == null)
-            //   Card = new Book();
             _numberPanel.Hide();
             _authorsPanel.Show();
             _publishingPanel.Show();
@@ -155,8 +153,6 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void MagazineRadioButtonCheckedChanged(object sender, EventArgs e)
         {
-            //if (Card == null)
-            //    Card = new Magazine();
             _numberPanel.Show();
             _authorsPanel.Hide();
             _publishingPanel.Hide();

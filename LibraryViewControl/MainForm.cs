@@ -90,7 +90,9 @@ namespace LibraryViewControl
 				{
 					UpdateList();
 					_dataListView.EnsureVisible(_libraryCards.Count - 1);
-				}
+                    _dataListView.Focus();
+                    _dataListView.Items[index].Selected = true;
+                }
 			}
 		}
 
@@ -126,7 +128,6 @@ namespace LibraryViewControl
 				catch
 				{
 					MessageBox.Show(this, "Ошибка чтения данных из файла!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					_libraryCards = new List<LibraryCard>();
 					UpdateList();
 				}
 			}
