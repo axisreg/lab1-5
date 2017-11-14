@@ -68,6 +68,15 @@ namespace LibraryViewControl
                         _numberTextBox.Text = ((Magazine)value).Number.ToString();
                     }
                 }
+                else {
+                    _card = null;
+                    _titleTextBox.Text = "";
+                    _yearTextBox.Text = "";
+                    _pagesTextBox.Text = "";
+                    _authorsTextBox.Text = "";
+                    _publishingTextBox.Text = "";
+                    _numberTextBox.Text = "";
+                }
             }
         }
 

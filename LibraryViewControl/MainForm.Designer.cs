@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this._dataGroupBox = new System.Windows.Forms.GroupBox();
             this._dataListView = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,8 +43,8 @@
             this._openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this._saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this._modifyButton = new System.Windows.Forms.Button();
-            this._libraryCardControl = new LibraryViewControl.LibraryCardControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this._libraryCardControl = new LibraryViewControl.LibraryCardControl();
             this._dataGroupBox.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -54,22 +55,26 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this._dataGroupBox.AutoSize = true;
+            this._dataGroupBox.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this._dataGroupBox.Controls.Add(this._dataListView);
             this._dataGroupBox.Location = new System.Drawing.Point(453, 3);
+            this._dataGroupBox.MinimumSize = new System.Drawing.Size(0, 400);
             this._dataGroupBox.Name = "_dataGroupBox";
-            this._dataGroupBox.Size = new System.Drawing.Size(666, 445);
+            this._dataGroupBox.Size = new System.Drawing.Size(652, 400);
             this._dataGroupBox.TabIndex = 0;
             this._dataGroupBox.TabStop = false;
             this._dataGroupBox.Text = "Список изданий";
             // 
             // _dataListView
             // 
+            this._dataListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this._dataListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4});
-            this._dataListView.Dock = System.Windows.Forms.DockStyle.Fill;
             this._dataListView.FullRowSelect = true;
             this._dataListView.GridLines = true;
             this._dataListView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -77,7 +82,7 @@
             this._dataListView.MinimumSize = new System.Drawing.Size(500, 300);
             this._dataListView.MultiSelect = false;
             this._dataListView.Name = "_dataListView";
-            this._dataListView.Size = new System.Drawing.Size(660, 426);
+            this._dataListView.Size = new System.Drawing.Size(644, 367);
             this._dataListView.TabIndex = 0;
             this._dataListView.UseCompatibleStateImageBehavior = false;
             this._dataListView.View = System.Windows.Forms.View.Details;
@@ -106,9 +111,9 @@
             // _addButton
             // 
             this._addButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this._addButton.Location = new System.Drawing.Point(329, 462);
+            this._addButton.Location = new System.Drawing.Point(322, 424);
             this._addButton.Name = "_addButton";
-            this._addButton.Size = new System.Drawing.Size(75, 23);
+            this._addButton.Size = new System.Drawing.Size(75, 29);
             this._addButton.TabIndex = 1;
             this._addButton.Text = "Добавить";
             this._addButton.UseVisualStyleBackColor = true;
@@ -117,9 +122,9 @@
             // _delButton
             // 
             this._delButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this._delButton.Location = new System.Drawing.Point(410, 462);
+            this._delButton.Location = new System.Drawing.Point(403, 424);
             this._delButton.Name = "_delButton";
-            this._delButton.Size = new System.Drawing.Size(75, 23);
+            this._delButton.Size = new System.Drawing.Size(75, 29);
             this._delButton.TabIndex = 2;
             this._delButton.Text = "Удалить";
             this._delButton.UseVisualStyleBackColor = true;
@@ -128,9 +133,9 @@
             // _findButton
             // 
             this._findButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this._findButton.Location = new System.Drawing.Point(572, 462);
+            this._findButton.Location = new System.Drawing.Point(565, 424);
             this._findButton.Name = "_findButton";
-            this._findButton.Size = new System.Drawing.Size(75, 23);
+            this._findButton.Size = new System.Drawing.Size(75, 29);
             this._findButton.TabIndex = 4;
             this._findButton.Text = "Найти";
             this._findButton.UseVisualStyleBackColor = true;
@@ -139,9 +144,9 @@
             // _loadButton
             // 
             this._loadButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this._loadButton.Location = new System.Drawing.Point(653, 462);
+            this._loadButton.Location = new System.Drawing.Point(646, 424);
             this._loadButton.Name = "_loadButton";
-            this._loadButton.Size = new System.Drawing.Size(75, 23);
+            this._loadButton.Size = new System.Drawing.Size(75, 29);
             this._loadButton.TabIndex = 5;
             this._loadButton.Text = "Загрузить";
             this._loadButton.UseVisualStyleBackColor = true;
@@ -150,9 +155,9 @@
             // _saveButton
             // 
             this._saveButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this._saveButton.Location = new System.Drawing.Point(734, 462);
+            this._saveButton.Location = new System.Drawing.Point(727, 424);
             this._saveButton.Name = "_saveButton";
-            this._saveButton.Size = new System.Drawing.Size(75, 23);
+            this._saveButton.Size = new System.Drawing.Size(75, 29);
             this._saveButton.TabIndex = 6;
             this._saveButton.Text = "Сохранить";
             this._saveButton.UseVisualStyleBackColor = true;
@@ -173,27 +178,19 @@
             // _modifyButton
             // 
             this._modifyButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this._modifyButton.Location = new System.Drawing.Point(491, 462);
+            this._modifyButton.Location = new System.Drawing.Point(484, 424);
             this._modifyButton.Name = "_modifyButton";
-            this._modifyButton.Size = new System.Drawing.Size(75, 23);
+            this._modifyButton.Size = new System.Drawing.Size(75, 29);
             this._modifyButton.TabIndex = 3;
             this._modifyButton.Text = "Изменить";
             this._modifyButton.UseVisualStyleBackColor = true;
             this._modifyButton.Click += new System.EventHandler(this.ModifyButtonClick);
             // 
-            // _libraryCardControl
-            // 
-            this._libraryCardControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this._libraryCardControl.CanToggle = false;
-            this._libraryCardControl.Location = new System.Drawing.Point(3, 3);
-            this._libraryCardControl.Name = "_libraryCardControl";
-            this._libraryCardControl.Card = null;
-            this._libraryCardControl.ReadOnly = false;
-            this._libraryCardControl.Size = new System.Drawing.Size(444, 248);
-            this._libraryCardControl.TabIndex = 7;
-            // 
             // tableLayoutPanel1
             // 
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.AutoSize = true;
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 450F));
@@ -201,18 +198,34 @@
             this.tableLayoutPanel1.Controls.Add(this._dataGroupBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this._libraryCardControl, 0, 0);
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 4);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1122, 451);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1108, 406);
             this.tableLayoutPanel1.TabIndex = 8;
+            // 
+            // _libraryCardControl
+            // 
+            this._libraryCardControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this._libraryCardControl.AutoSize = true;
+            this._libraryCardControl.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this._libraryCardControl.CanToggle = false;
+            this._libraryCardControl.Card = ((LibraryModel.LibraryCard)(resources.GetObject("_libraryCardControl.Card")));
+            this._libraryCardControl.Location = new System.Drawing.Point(3, 3);
+            this._libraryCardControl.MinimumSize = new System.Drawing.Size(400, 0);
+            this._libraryCardControl.Name = "_libraryCardControl";
+            this._libraryCardControl.ReadOnly = false;
+            this._libraryCardControl.Size = new System.Drawing.Size(444, 400);
+            this._libraryCardControl.TabIndex = 7;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1138, 494);
+            this.ClientSize = new System.Drawing.Size(1124, 462);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this._modifyButton);
             this.Controls.Add(this._saveButton);
@@ -221,7 +234,7 @@
             this.Controls.Add(this._delButton);
             this.Controls.Add(this._addButton);
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(727, 370);
+            this.MinimumSize = new System.Drawing.Size(1140, 500);
             this.Name = "MainForm";
             this.Text = "Система библиотечных карточек";
             this._dataGroupBox.ResumeLayout(false);

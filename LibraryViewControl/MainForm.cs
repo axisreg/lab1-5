@@ -42,7 +42,8 @@ namespace LibraryViewControl
 				_dataListView.Items.Add(new ListViewItem(new string[] { card.Title, card.Year.ToString(), card.Pages.ToString(), card.ToString() }));
 			}
 			_dataListView.EndUpdate();
-		}
+            UpdateCardControl();
+        }
 
 		/// <summary>
 		/// Реакция на нажатие кнопки "Добавить"
@@ -71,7 +72,7 @@ namespace LibraryViewControl
 			if (index >= 0 && MessageBox.Show(this, "Вы действительно хотите удалить эту запись?", Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
 			{
 				_libraryCards.RemoveAt(index);
-				UpdateList();
+                UpdateList();
 			}
 		}
 
@@ -151,17 +152,29 @@ namespace LibraryViewControl
 		}
 
         /// <summary>
-		/// Реакция на выбор издания в списке
-		/// </summary>
-		/// <param name="sender">Ссылка на список</param>
-		/// <param name="e">Ссылка на аргументы события</param>
-		private void DataListViewSelectedIndexChanged(object sender, EventArgs e)
+        /// Обновить данные в контрольной карточке
+        /// </summary>
+        private void UpdateCardControl()
         {
             var index = _dataListView.SelectedIndices.Count <= 0 ? -1 : _dataListView.SelectedIndices[0];
             if (index >= 0)
             {
                 _libraryCardControl.Card = _libraryCards[index];
             }
+            else
+            {
+                _libraryCardControl.Card = null;
+            }
+        }
+
+        /// <summary>
+		/// Реакция на выбор издания в списке
+		/// </summary>
+		/// <param name="sender">Ссылка на список</param>
+		/// <param name="e">Ссылка на аргументы события</param>
+		private void DataListViewSelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateCardControl();
         }
     }
 }
