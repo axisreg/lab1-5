@@ -74,10 +74,4 @@ namespace LibraryModel
 
         abstract public string Format();
     }
-
-
-
-    //dissertation
-    //collection
-
 }
