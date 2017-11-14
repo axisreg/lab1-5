@@ -40,34 +40,19 @@ namespace ConsoleApp1
             Book book = new Book();
             RepeatUntilValid(
                 "Введите заглавие книги:",
-                () => 
-                {
-                    book.Title = Console.ReadLine();
-                });
+                () => book.Title = Console.ReadLine());
             RepeatUntilValid(
                 "Введите год издания книги:",
-                () => 
-                {
-                    book.Year = Convert.ToInt32(Console.ReadLine());
-                });
+                () => book.Year = Convert.ToInt32(Console.ReadLine()));
             RepeatUntilValid(
                 "Введите количество страниц книги:",
-                () => 
-                {
-                    book.Pages = Convert.ToInt32(Console.ReadLine());
-                });
+                () => book.Pages = Convert.ToInt32(Console.ReadLine()));
             RepeatUntilValid(
                 "Введите список авторов книги:",
-                () => 
-                {
-                    book.Authors = Console.ReadLine();
-                });
+                () => book.Authors = Console.ReadLine());
             RepeatUntilValid(
-                 "Введите издательство книги:",
-                 () =>
-                 {
-                     book.Publisher = Console.ReadLine();
-                 });            
+                "Введите издательство книги:",
+                () => book.Publisher = Console.ReadLine());            
             return book;
         }
 
@@ -78,28 +63,16 @@ namespace ConsoleApp1
             Magazine magazine = new Magazine();
             RepeatUntilValid(
                  "Введите заглавие журнала:",
-                 () =>
-                 {
-                     magazine.Title = Console.ReadLine();
-                 });
+                 () => magazine.Title = Console.ReadLine());
             RepeatUntilValid(
-                  "Введите год издания журнала:",
-                  () =>
-                  {
-                      magazine.Year = Convert.ToInt32(Console.ReadLine());
-                  });
+                 "Введите год издания журнала:",
+                 () => magazine.Year = Convert.ToInt32(Console.ReadLine()));
             RepeatUntilValid(
-                  "Введите количество страниц журнала:",
-                  () =>
-                  {
-                      magazine.Pages = Convert.ToInt32(Console.ReadLine());
-                  });
+                 "Введите количество страниц журнала:",
+                 () => magazine.Pages = Convert.ToInt32(Console.ReadLine()));
             RepeatUntilValid(
-                  "Введите номер журнала:",
-                  () =>
-                  {
-                      magazine.Number = Convert.ToInt32(Console.ReadLine());
-                  });
+                 "Введите номер журнала:",
+                 () => magazine.Number = Convert.ToInt32(Console.ReadLine()));
             return magazine;
         }
 
