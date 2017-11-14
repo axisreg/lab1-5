@@ -8,6 +8,35 @@ namespace ConsoleApp1
 {
     class Program
     {
+        private static Book CreateBook() {
+            Book book = new Book();
+            Console.WriteLine("Введите заглавие книги:");
+            book.Title = Console.ReadLine();
+            Console.WriteLine("Введите год издания книги:");
+            book.Year = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите количество страниц книги:");
+            book.Pages = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите список авторов книги (через запятую):");
+            book.Authors = Console.ReadLine();
+            Console.WriteLine("Введите издательство книги:");
+            book.Publisher = Console.ReadLine();
+            return book;
+        }
+
+
+        private static Magazine CreateMagazine() {
+            Magazine magazine = new Magazine();
+            Console.WriteLine("Введите заглавие журнала:");
+            magazine.Title = Console.ReadLine();
+            Console.WriteLine("Введите год издания журнала:");
+            magazine.Year = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите количество страниц журнала:");
+            magazine.Pages = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите номер журнала:");
+            magazine.Number = Convert.ToInt32(Console.ReadLine());
+            return magazine;
+        }
+
         static void Main(string[] args)
         {
             System.Console.WriteLine("Задание библиотечной карточки:");
@@ -21,30 +50,12 @@ namespace ConsoleApp1
                 switch (cardType)
                 {
                     case 1:
-                        System.Console.WriteLine("Создается карточка книги");
-                        card = new Book();
-                        System.Console.WriteLine("Введите заглавие книги:");
-                        card.Title = Console.ReadLine();
-                        System.Console.WriteLine("Введите год издания книги:");
-                        card.Year = Convert.ToInt32(Console.ReadLine());
-                        System.Console.WriteLine("Введите количество страниц книги:");
-                        card.Pages = Convert.ToInt32(Console.ReadLine());
-                        System.Console.WriteLine("Введите список авторов книги (через запятую):");
-                        ((Book)card).Authors = Console.ReadLine();
-                        System.Console.WriteLine("Введите издательство книги:");
-                        ((Book)card).Publisher = Console.ReadLine();
+                        Console.WriteLine("Создается карточка книги");
+                        card = CreateBook();
                         break;
                     case 2:
-                        System.Console.WriteLine("Создается карточка журнала");
-                        card = new Magazine();
-                        System.Console.WriteLine("Введите заглавие журнала:");
-                        card.Title = Console.ReadLine();
-                        System.Console.WriteLine("Введите год издания журнала:");
-                        card.Year = Convert.ToInt32(Console.ReadLine());
-                        System.Console.WriteLine("Введите количество страниц журнала:");
-                        card.Pages = Convert.ToInt32(Console.ReadLine());
-                        System.Console.WriteLine("Введите номер журнала:");
-                        ((Magazine)card).Number = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Создается карточка журнала");
+                        card = CreateMagazine();
                         break;
                     default:
                         throw new ArgumentException("Неизвестный тип библиотечной карточки");
