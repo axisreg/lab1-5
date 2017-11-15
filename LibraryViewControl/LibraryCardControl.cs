@@ -44,39 +44,18 @@ namespace LibraryViewControl
                 if (value != null)
                 {
                     _card = value;
-                    _titleTextBox.Text = value.Title;
-                    _yearTextBox.Text = value.Year.ToString();
-                    _pagesTextBox.Text = value.Pages.ToString();
-
-                    if (value is Book)
-                    {
-                        _bookRadioButton.Enabled = true;
-                        _bookRadioButton.Checked = true;
-
-                        if (_readOnly || !_canToggle) _magazineRadioButton.Enabled = false;
-                        if (((Book)value).Authors != null)
-                            _authorsTextBox.Text = ((Book)value).Authors.ToString();
-                        if (((Book)value).Publisher != null)
-                            _publishingTextBox.Text = ((Book)value).Publisher.ToString();
-                    }
-                    else if (value is Magazine)
-                    {
-                        _magazineRadioButton.Enabled = true;
-                        _magazineRadioButton.Checked = true;
-
-                        if (_readOnly || !_canToggle) _bookRadioButton.Enabled = false;
-                        _numberTextBox.Text = ((Magazine)value).Number.ToString();
-                    }
+                    if (value is Book) SetValue((Book)value);
+                    if (value is Magazine) SetValue((Magazine)value);
                 }
                 else {
-                    _card = null;
                     _titleTextBox.Text = "";
                     _yearTextBox.Text = "";
                     _pagesTextBox.Text = "";
+                    _numberTextBox.Text = "";
                     _authorsTextBox.Text = "";
                     _publishingTextBox.Text = "";
-                    _numberTextBox.Text = "";
                 }
+                
             }
         }
 
@@ -84,12 +63,47 @@ namespace LibraryViewControl
         {
             InitializeComponent();
             _bookRadioButton.Checked = true;
+
             Card = new Book();
             BookRadioButtonCheckedChanged(null, EventArgs.Empty);
             ReadOnly = true;
             CanToggle = true;
         }
 
+
+        /// <summary>
+        /// Заполнение полей книги
+        /// </summary>
+        private void SetValue(Book book)
+        {
+            _bookRadioButton.Enabled = true;
+            _bookRadioButton.Checked = true;
+            if (_readOnly || !_canToggle) _magazineRadioButton.Enabled = false;
+
+            _titleTextBox.Text = book.Title;
+            _yearTextBox.Text = book.Year.ToString();
+            _pagesTextBox.Text = book.Pages.ToString();
+            if (book.Authors != null)
+                _authorsTextBox.Text = book.Authors.ToString();
+            if (book.Publisher != null)
+                _publishingTextBox.Text = book.Publisher.ToString();
+        }
+
+        /// <summary>
+        /// Заполнение полей журнала
+        /// </summary>
+        private void SetValue(Magazine magazine)
+        {
+            _magazineRadioButton.Enabled = true;
+            _magazineRadioButton.Checked = true;
+            if (_readOnly || !_canToggle) _bookRadioButton.Enabled = false;
+
+            _titleTextBox.Text = magazine.Title;
+            _yearTextBox.Text = magazine.Year.ToString();
+            _pagesTextBox.Text = magazine.Pages.ToString();
+            _numberTextBox.Text = magazine.Number.ToString();
+
+        }
 
         /// <summary>
         /// Свойство, определяющее, можно ли изменить тип издания
@@ -150,9 +164,15 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void BookRadioButtonCheckedChanged(object sender, EventArgs e)
         {
-            _numberPanel.Hide();
-            _authorsPanel.Show();
-            _publishingPanel.Show();
+            if (_bookRadioButton.Checked)
+            {
+                Card = new Book();
+                _numberPanel.Hide();
+                _authorsPanel.Show();
+                _publishingPanel.Show();
+
+            }
+              
         }
 
         /// <summary>
@@ -162,9 +182,15 @@ namespace LibraryViewControl
         /// <param name="e">Ссылка на аргументы события</param>
         private void MagazineRadioButtonCheckedChanged(object sender, EventArgs e)
         {
-            _numberPanel.Show();
-            _authorsPanel.Hide();
-            _publishingPanel.Hide();
+
+            if (_magazineRadioButton.Checked)
+            {
+                Card = new Magazine();
+                _numberPanel.Show();
+                _authorsPanel.Hide();
+                _publishingPanel.Hide();
+            }
+                
         }
 
         private void ShowErrorAndCancelEvent(string message, CancelEventArgs e)
@@ -187,6 +213,7 @@ namespace LibraryViewControl
             }
             catch (NullReferenceException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -204,6 +231,7 @@ namespace LibraryViewControl
             }
             catch (NullReferenceException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -222,6 +250,7 @@ namespace LibraryViewControl
             }
             catch (NullReferenceException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -239,10 +268,12 @@ namespace LibraryViewControl
             }
             catch (FormatException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent("Год издания должен быть целым числом", e);
             }
             catch (ArgumentOutOfRangeException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -261,10 +292,12 @@ namespace LibraryViewControl
             }
             catch (FormatException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent("Номер издания должен быть целым числом", e);
             }
             catch (ArgumentOutOfRangeException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -282,10 +315,12 @@ namespace LibraryViewControl
             }
             catch (FormatException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent("Количество страниц должно быть целым числом", e);
             }
             catch (ArgumentOutOfRangeException ex)
             {
+                _error = true;
                 ShowErrorAndCancelEvent(ex.Message, e);
             }
         }
@@ -303,6 +338,7 @@ namespace LibraryViewControl
             Random random = new Random();
             if (random.Next(2) == 1)
             {
+                var book = new Book();
                 string a = String.Format("{0} {1}.", families[random.Next(families.Length)], ios[random.Next(ios.Length)]);
                 if (random.Next(2) == 1) a += ios[random.Next(ios.Length)] + ".";
                 if (random.Next(5) == 1)
@@ -310,19 +346,22 @@ namespace LibraryViewControl
                     a += String.Format(", {0} {1}.", families[random.Next(families.Length)], ios[random.Next(ios.Length)]);
                     if (random.Next(2) == 1) a += ios[random.Next(ios.Length)] + ".";
                 }
-                _authorsTextBox.Text = a;
-                _titleTextBox.Text = books[random.Next(books.Length)];
-                _publishingTextBox.Text = publishes[random.Next(publishes.Length)];
-                _bookRadioButton.Checked = true;
+                book.Authors = a;
+                book.Title = books[random.Next(books.Length)];
+                book.Publisher = publishes[random.Next(publishes.Length)];
+                book.Year = random.Next(1990, DateTime.Now.Year + 1);
+                book.Pages = random.Next(100, 501);
+                Card = book;
             }
             else
             {
-                _titleTextBox.Text = magazines[random.Next(magazines.Length)];
-                _numberTextBox.Text = random.Next(1, 13).ToString();
-                _magazineRadioButton.Checked = true;
+                var magazine = new Magazine();
+                magazine.Title = magazines[random.Next(magazines.Length)];
+                magazine.Number = random.Next(1, 13);
+                magazine.Year = random.Next(1990, DateTime.Now.Year + 1);
+                magazine.Pages = random.Next(100, 501);
+                Card = magazine;
             }
-            _yearTextBox.Text = random.Next(1990, DateTime.Now.Year + 1).ToString();
-            _pagesTextBox.Text = random.Next(100, 501).ToString();
         }
 
         /// <summary>

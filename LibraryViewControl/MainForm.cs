@@ -39,7 +39,8 @@ namespace LibraryViewControl
 			_dataListView.Items.Clear();
 			foreach (LibraryCard card in _libraryCards)
 			{
-				_dataListView.Items.Add(new ListViewItem(new string[] { card.Title, card.Year.ToString(), card.Pages.ToString(), card.ToString() }));
+                if (card != null)
+				    _dataListView.Items.Add(new ListViewItem(new string[] { card.Title, card.Year.ToString(), card.Pages.ToString(), card.ToString() }));
 			}
 			_dataListView.EndUpdate();
             UpdateCardControl();
