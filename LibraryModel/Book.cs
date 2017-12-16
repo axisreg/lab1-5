@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryModel
 {
     /// <summary>
     /// Класс, описывающий библиотечную карточку книги
     /// </summary>
+    /// <inheritdoc cref="LibraryCard"/>
     [Serializable]
     public class Book : LibraryCard
     {
@@ -67,42 +65,42 @@ namespace LibraryModel
         /// <returns>Информация о книге в соответствии с ОС ТУСУР 01-2013</returns>
         public override string Format()
         {
-            string mauth = String.Empty;
-            string fauth = String.Empty;
+            var mauth = String.Empty;
+            var fauth = String.Empty;
             if (!String.IsNullOrWhiteSpace(_authors))
             {
-                List<string> all = new List<string>(_authors.Split(','));
-                List<string> one = new List<string>(all[0].Trim().Split(' '));
-                if (all.Count <= 3)
+                var allAuthors = new List<string>(_authors.Split(','));
+                var oneAuthor = new List<string>(allAuthors[0].Trim().Split(' '));
+                if (allAuthors.Count <= 3)
                 {
-                    if (one.Count > 1) one[0] += ",";
-                    mauth = String.Join(" ", one);
+                    if (oneAuthor.Count > 1) oneAuthor[0] += ",";
+                    mauth = String.Join(" ", oneAuthor);
                     if (mauth[mauth.Length - 1] != '.') mauth += ".";
                     mauth += " ";
-                    foreach (string s in all)
+                    foreach (var s in allAuthors)
                     {
-                        one.Clear();
-                        one.AddRange(s.Trim().Split(' '));
+                        oneAuthor.Clear();
+                        oneAuthor.AddRange(s.Trim().Split(' '));
                         if (fauth != String.Empty) fauth += ", ";
                         else fauth = " / ";
-                        one.Add(one[0]);
-                        one.RemoveAt(0);
-                        fauth += String.Join(" ", one);
+                        oneAuthor.Add(oneAuthor[0]);
+                        oneAuthor.RemoveAt(0);
+                        fauth += String.Join(" ", oneAuthor);
                     }
                     if (fauth[fauth.Length - 1] != '.') fauth += ".";
                 }
                 else
                 {
-                    one.Add(one[0]);
-                    one.RemoveAt(0);
-                    fauth = " / " + String.Join(" ", one) + "и др.";
+                    oneAuthor.Add(oneAuthor[0]);
+                    oneAuthor.RemoveAt(0);
+                    fauth = " / " + String.Join(" ", oneAuthor) + "и др.";
                 }
             }
             else
             {
                 fauth = ".";
             }
-            return String.Format("{0}{1}{2} - {3}, {4}. - {5} с.", mauth, _title, fauth, _publisher, _year, _pages);
+            return String.Format("{0}{1}{2} - {3}, {4}. - {5} с.", mauth, Title, fauth, Publisher, Year, Pages);
         }
 
         public override string ToString()

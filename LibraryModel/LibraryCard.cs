@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryModel
 {
     /// <summary>
     /// Класс, описывающий библиотечную карточку
     /// </summary>
-    [Serializable] abstract public class LibraryCard
+    [Serializable]
+    public abstract class LibraryCard
     {
-        protected string _title;
-        protected int _year;
-        protected int _pages;
+        private string _title;
+        private int _year;
+        private int _pages;
 
         /// <summary>
 		/// Название издания
@@ -72,6 +69,6 @@ namespace LibraryModel
             }
         }
 
-        abstract public string Format();
+        public abstract string Format();
     }
 }

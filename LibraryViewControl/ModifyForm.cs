@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 using LibraryModel;
 
@@ -8,6 +7,7 @@ namespace LibraryViewControl
 	/// <summary>
 	/// Форма для редактирования карточки издания
 	/// </summary>
+	/// <inheritdoc cref="Form"/>
 	public partial class ModifyForm : Form
 	{
 		/// <summary>
@@ -27,8 +27,7 @@ namespace LibraryViewControl
             _libraryCardControl.CanToggle = false;
         }
 
-
-        public void ModifyFormShown(object sender, EventArgs e) {
+        private void ModifyFormShown(object sender, EventArgs e) {
         }
 
         /// <summary>

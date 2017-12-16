@@ -18,8 +18,10 @@ namespace UnitTests.LibraryModel
         [TestCase("Открытое образование", TestName = "Тестирование Title при присваивании валидного значения.")]
         public void TitleTest(string title)
         {
-            var pub = new Magazine();
-            pub.Title = title;
+            var pub = new Magazine
+            {
+                Title = title
+            };
         }
 
         /// <summary>
@@ -43,8 +45,10 @@ namespace UnitTests.LibraryModel
         [TestCase(2017, TestName = "Тестирование Year при присваивании текущего года")]
         public void YearTest(int year)
         {
-            var pub = new Magazine();
-            pub.Year = year;
+            var pub = new Magazine
+            {
+                Year = year
+            };
         }
 
         /// <summary>
@@ -69,8 +73,10 @@ namespace UnitTests.LibraryModel
         [TestCase(Int32.MaxValue, TestName = "Тестирование Pages при присваивании Int32.MaxValue.")]
         public void PagesTest(int pages)
         {
-            var pub = new Magazine();
-            pub.Pages = pages;
+            var pub = new Magazine
+            {
+                Pages = pages
+            };
         }
 
         /// <summary>
@@ -94,8 +100,10 @@ namespace UnitTests.LibraryModel
         [TestCase(1, TestName = "Тестирование Number при присваивании 1.")]
         public void NumberTest(int number)
         {
-            var pub = new Magazine();
-            pub.Number = number;
+            var pub = new Magazine
+            {
+                Number = number
+            };
         }
 
         /// <summary>
@@ -123,21 +131,25 @@ namespace UnitTests.LibraryModel
         [TestCase("Открытое образование", 2016, 6, 100, TestName = "Тестирование ToString, когда все поля карточки заполнены.", ExpectedResult = "Открытое образование. - 2016. - № 6. - 100 с.")]
         public string FormatTest(string title, int year, int number, int pages)
         {
-            var pub = new Magazine();
-            pub.Title = title;
-            pub.Year = year;
-            pub.Number = number;
-            pub.Pages = pages;
+            var pub = new Magazine
+            {
+                Title = title,
+                Year = year,
+                Number = number,
+                Pages = pages
+            };
             return pub.Format();
         }
 
 
         private string SetFormatData(string title, int year, int number, int pages) {
-            var pub = new Magazine();
-            pub.Title = title;
-            pub.Year = year;
-            pub.Number = number;
-            pub.Pages = pages;
+            var pub = new Magazine
+            {
+                Title = title,
+                Year = year,
+                Number = number,
+                Pages = pages
+            };
             return pub.Format();
         }
 

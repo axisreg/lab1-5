@@ -18,8 +18,10 @@ namespace UnitTests.LibraryModel
         [TestCase("Мастер и Маргарита", TestName = "Тестирование Title при присваивании \"Мастер и Маргарита\".")]
         public void TitleTest(string title)
         {
-            var pub = new Book();
-            pub.Title = title;
+            var pub = new Book
+            {
+                Title = title
+            };
         }
 
         /// <summary>
@@ -43,8 +45,10 @@ namespace UnitTests.LibraryModel
         [TestCase(1800, TestName = "Тестирование Year при присваивании 1800.")]
         public void YearTest(int year)
         {
-            var pub = new Book();
-            pub.Year = year;
+            var pub = new Book
+            {
+                Year = year
+            };
         }
 
         /// <summary>
@@ -70,8 +74,10 @@ namespace UnitTests.LibraryModel
         [TestCase(Int32.MaxValue, TestName = "Тестирование Pages при присваивании Int32.MaxValue.")]
         public void PagesTest(int pages)
         {
-            var pub = new Book();
-            pub.Pages = pages;
+            var pub = new Book
+            {
+                Pages = pages
+            };
         }
 
         /// <summary>
@@ -95,8 +101,10 @@ namespace UnitTests.LibraryModel
         [TestCase("", TestName = "Тестирование Authors при присваивании \"\".")]
         public void AuthorsTest(string authors)
         {
-            var pub = new Book();
-            pub.Authors = authors;
+            var pub = new Book
+            {
+                Authors = authors
+            };
         }
 
         /// <summary>
@@ -113,13 +121,15 @@ namespace UnitTests.LibraryModel
         /// <summary>
         /// Метод для тестирования издательства, выпустившего книгу
         /// </summary>
-        /// <param name="publishing">Наименование издательства</param>
+        /// <param name="publisher">Наименование издательства</param>
         [Test]
         [TestCase("Художественная литература", TestName = "Тестирование Publishing при присваивании \"Художественная литература\".")]
         public void PublisherTest(string publisher)
         {
-            var pub = new Book();
-            pub.Publisher = publisher;
+            var pub = new Book
+            {
+                Publisher = publisher
+            };
         }
  
 
@@ -147,23 +157,27 @@ namespace UnitTests.LibraryModel
         [TestCase("Михаил Булгаков", "Мастер и Маргарита", "Художественная литература", 2016, 500, TestName = "Тестирование ToString, когда все поля карточки заполнены.", ExpectedResult = "Михаил, Булгаков. Мастер и Маргарита / Булгаков Михаил. - Художественная литература, 2016. - 500 с.")]
         public string FormatTest(string authors, string title, string publishing, int year, int pages)
         {
-            var pub = new Book();
-            pub.Authors = authors;
-            pub.Publisher = publishing;
-            pub.Title = title;
-            pub.Year = year;
-            pub.Pages = pages;
+            var pub = new Book
+            {
+                Authors = authors,
+                Publisher = publishing,
+                Title = title,
+                Year = year,
+                Pages = pages
+            };
             return pub.Format();
         }
 
 
         private string SetFormatData(string authors, string title, string publishing, int year, int pages) {
-            var pub = new Book();
-            pub.Authors = authors;
-            pub.Publisher = publishing;
-            pub.Title = title;
-            pub.Year = year;
-            pub.Pages = pages;
+            var pub = new Book
+            {
+                Authors = authors,
+                Publisher = publishing,
+                Title = title,
+                Year = year,
+                Pages = pages
+            };
             return pub.Format();
         }
 

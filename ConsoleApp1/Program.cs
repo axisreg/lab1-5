@@ -1,10 +1,7 @@
 ﻿using LibraryModel;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 
-
-namespace ConsoleApp1
+namespace ConsoleApp
 {
     class Program
     {
@@ -15,7 +12,7 @@ namespace ConsoleApp1
         /// <param name="action">Выполняемое действие.</param>
         private static void RepeatUntilValid(string message, Action action)
         {
-            bool invalid = true;
+            var invalid = true;
             do
             {
                 Console.WriteLine(message);
@@ -37,7 +34,7 @@ namespace ConsoleApp1
         /// Интерактивное создание карточки книги.
         /// </summary>
         private static Book CreateBook() {
-            Book book = new Book();
+            var book = new Book();
             RepeatUntilValid(
                 "Введите заглавие книги:",
                 () => book.Title = Console.ReadLine());
@@ -60,7 +57,7 @@ namespace ConsoleApp1
         /// Процесс интерактивного создания карточки журнала.
         /// </summary>
         private static Magazine CreateMagazine() {
-            Magazine magazine = new Magazine();
+            var magazine = new Magazine();
             RepeatUntilValid(
                  "Введите заглавие журнала:",
                  () => magazine.Title = Console.ReadLine());
@@ -80,15 +77,15 @@ namespace ConsoleApp1
         /// <summary>
         /// Главная точка входа для консольного приложения.
         /// </summary>
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            System.Console.WriteLine("Задание библиотечной карточки:");
-            System.Console.WriteLine("Введите цифру для создания карточки определенного типа:");
-            System.Console.WriteLine("1) Книга");
-            System.Console.WriteLine("2) Журнал");
+            Console.WriteLine("Задание библиотечной карточки:");
+            Console.WriteLine("Введите цифру для создания карточки определенного типа:");
+            Console.WriteLine("1) Книга");
+            Console.WriteLine("2) Журнал");
             try
             {
-                int cardType = Convert.ToInt32(System.Console.ReadLine());
+                int cardType = Convert.ToInt32(Console.ReadLine());
                 LibraryCard card;
                 switch (cardType)
                 {
@@ -107,11 +104,11 @@ namespace ConsoleApp1
                 Console.WriteLine(card.Format());
             }
             catch (Exception ex) {
-                System.Console.WriteLine("Во время выполнения программы возникла непредвиденная ошибка: " + ex.Message);
+                Console.WriteLine("Во время выполнения программы возникла непредвиденная ошибка: " + ex.Message);
             }
 
-            System.Console.WriteLine("Нажмите 'Ввод' для выхода.");
-            System.Console.ReadLine();
+            Console.WriteLine("Нажмите 'Ввод' для выхода.");
+            Console.ReadLine();
 
         }
     }

@@ -9,6 +9,7 @@ namespace LibraryView
 	/// <summary>
 	/// Форма для поиска карточек изданий
 	/// </summary>
+	/// <inheritdoc cref="Form"/>
 	public partial class FindForm : Form
 	{
 		/// <summary>

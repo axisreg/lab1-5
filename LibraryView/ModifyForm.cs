@@ -144,7 +144,7 @@ namespace LibraryView
             {
                 Card.Year = int.Parse(_yearTextBox.Text);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 ShowErrorAndCancelEvent("Год издания должен быть целым числом", e);
             }
@@ -165,7 +165,7 @@ namespace LibraryView
             {
                 ((Magazine)Card).Number = int.Parse(_numberTextBox.Text);
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 ShowErrorAndCancelEvent("Номер издания должен быть целым числом", e);
             }
@@ -186,7 +186,7 @@ namespace LibraryView
             {
                 Card.Pages = int.Parse(_pagesTextBox.Text);
             }
-            catch (FormatException ex) {
+            catch (FormatException) {
                 ShowErrorAndCancelEvent("Количество страниц должно быть целым числом", e);
             }
             catch (ArgumentOutOfRangeException ex)
