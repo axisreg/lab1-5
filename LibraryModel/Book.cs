@@ -12,8 +12,8 @@ namespace LibraryModel
     [Serializable]
     public class Book : LibraryCard
     {
-        private string authors;
-        private string publisher;
+        private string _authors;
+        private string _publisher;
 
         public Book() {
         }
@@ -34,11 +34,11 @@ namespace LibraryModel
         {
             get
             {
-                return authors;
+                return _authors;
             }
             set
             {
-                authors = value ?? throw new NullReferenceException("Список авторов не может быть пустым!");
+                _authors = value ?? throw new NullReferenceException("Список авторов не может быть пустым!");
             }
         }
 
@@ -49,7 +49,7 @@ namespace LibraryModel
         {
             get
             {
-                return publisher;
+                return _publisher;
             }
             set
             {
@@ -57,7 +57,7 @@ namespace LibraryModel
                 {
                     throw new NullReferenceException("Издательство книги не может быть пустым!");
                 }
-                publisher = value;
+                _publisher = value;
             }
         }
 
@@ -69,9 +69,9 @@ namespace LibraryModel
         {
             string mauth = String.Empty;
             string fauth = String.Empty;
-            if (!String.IsNullOrWhiteSpace(authors))
+            if (!String.IsNullOrWhiteSpace(_authors))
             {
-                List<string> all = new List<string>(authors.Split(','));
+                List<string> all = new List<string>(_authors.Split(','));
                 List<string> one = new List<string>(all[0].Trim().Split(' '));
                 if (all.Count <= 3)
                 {
@@ -102,7 +102,7 @@ namespace LibraryModel
             {
                 fauth = ".";
             }
-            return String.Format("{0}{1}{2} - {3}, {4}. - {5} с.", mauth, _title, fauth, publisher, _year, _pages);
+            return String.Format("{0}{1}{2} - {3}, {4}. - {5} с.", mauth, _title, fauth, _publisher, _year, _pages);
         }
 
         public override string ToString()
