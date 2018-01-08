@@ -77,6 +77,11 @@ namespace LibraryView
 			_publishingPanel.Hide();
 		}
 
+        /// <summary>
+        /// Реакция на введение ошибочных данных
+        /// </summary>
+        /// <param name="message">Ссылка на сообщение об ошибке</param>
+        /// <param name="e">Ссылка на аргументы события</param>
         private void ShowErrorAndCancelEvent(string message, CancelEventArgs e) {
             MessageBox.Show(this, message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             if (e != null) e.Cancel = true;

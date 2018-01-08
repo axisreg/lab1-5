@@ -27,6 +27,11 @@ namespace LibraryViewControl
             _libraryCardControl.CanToggle = false;
         }
 
+        /// <summary>
+		/// Реакция на отображение формы
+		/// </summary>
+		/// <param name="sender">Ссылка на форму</param>
+		/// <param name="e">Ссылка на аргументы события</param>
         private void ModifyFormShown(object sender, EventArgs e) {
         }
 

@@ -5,6 +5,9 @@ using LibraryModel;
 
 namespace LibraryViewControl
 {
+    /// <summary>
+	/// Компонент для редактирования карточки издания
+	/// </summary>
     public partial class LibraryCardControl : UserControl
     {
         /// <summary>
@@ -27,6 +30,9 @@ namespace LibraryViewControl
         /// </summary>
         private bool _canToggle;
 
+        /// <summary>
+		/// Ссылка на карточку издания
+		/// </summary>
         public LibraryCard Card
         {
             get
@@ -53,6 +59,9 @@ namespace LibraryViewControl
             }
         }
 
+        /// <summary>
+		/// Конструктор элемента управления
+		/// </summary>
         public LibraryCardControl()
         {
             InitializeComponent();
@@ -63,7 +72,6 @@ namespace LibraryViewControl
             ReadOnly = true;
             CanToggle = true;
         }
-
 
         /// <summary>
         /// Заполнение полей книги
@@ -187,6 +195,11 @@ namespace LibraryViewControl
                 
         }
 
+        /// <summary>
+        /// Реакция на введение ошибочных данных
+        /// </summary>
+        /// <param name="message">Ссылка на сообщение об ошибке</param>
+        /// <param name="e">Ссылка на аргументы события</param>
         private void ShowErrorAndCancelEvent(string message, CancelEventArgs e)
         {
             MessageBox.Show(this, message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
